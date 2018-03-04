@@ -38,8 +38,9 @@ String emergency="";
     public void onCreate() {
         // code to execute when the service is first created
         super.onCreate();
-        Log.i("MyService", "Service Started.");
-go();
+
+
+        go();
     }
 
     @Override
@@ -56,17 +57,6 @@ go();
         // Let it continue running until it is stopped.
 
 
-
-
-
-
-     //   if (emergency.equals("1")) {
-      //      Intent i = new Intent(MyService.this, MainActivity.class);
-       //     startActivity(i);
-    //        onDestroy();
-     //   }
-
-        Log.e("myservice", "Ongoing");
         return START_STICKY;
 
     }
@@ -107,7 +97,12 @@ go();
     }
 
 void go(){
-        ApiInterfaceearthquake apiServiceearth = ApiClientearthquake.getClient().create(ApiInterfaceearthquake.class);
+
+    Log.e("MyService", "Service Started.");
+
+
+
+    ApiInterfaceearthquake apiServiceearth = ApiClientearthquake.getClient().create(ApiInterfaceearthquake.class);
 //TODO
         Call calle = apiServiceearth.getall();
         calle.enqueue(new Callback() {
@@ -247,6 +242,7 @@ void go(){
                      startActivity(i);
 
                     }
+                    else go();
 
                 } else {
 
