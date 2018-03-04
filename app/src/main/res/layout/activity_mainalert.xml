@@ -11,8 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="300dp"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="31dp"
+        android:layout_below="@+id/textView6"
         tools:layout_editor_absoluteX="118dp"
         tools:layout_editor_absoluteY="16dp" />
 
@@ -42,4 +41,18 @@
         app:floating_left_icon="@drawable/ic_message_black_24dp"
         app:floating_title="Emergency SMS"
         app:floating_title_color="@android:color/holo_red_dark" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="14dp"
+        android:text="Intruder is detected at your shop \nLIVE FEED :: "
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="16sp" />
 </RelativeLayout>

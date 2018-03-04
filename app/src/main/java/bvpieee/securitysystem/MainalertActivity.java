@@ -18,8 +18,12 @@ public class MainalertActivity extends AppCompatActivity {
         setContentView(R.layout.activity_mainalert);
 
         final MediaPlayer alert = MediaPlayer.create(MainalertActivity.this, R.raw.siren);
-        alert.start();
         SharedPreferences preference=getSharedPreferences("ieee",MODE_PRIVATE);
+
+        String accee = preference.getString("alarm", "1");
+if (accee.equals("1"))
+        alert.start();
+
         final String num=preference.getString("no","");
 
         final String addr=preference.getString("add","");
