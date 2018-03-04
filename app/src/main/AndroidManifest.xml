@@ -22,9 +22,11 @@
         <service
             android:name=".MyService"
             android:enabled="true"
-            android:exported="true" />
+            android:exported="false" />
 
-        <activity android:name=".MainalertActivity" />
+        <activity android:name=".MainalertActivity"
+
+            />
         <activity android:name=".Main2Activity"></activity>
     </application>
 

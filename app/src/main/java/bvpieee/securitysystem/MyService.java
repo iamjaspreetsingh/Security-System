@@ -4,7 +4,6 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.IBinder;
-import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -26,6 +25,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 
+import static android.content.ContentValues.TAG;
+
 /**
  * Created by JASPREET SINGH on 03-03-2018.
  */
@@ -33,7 +34,14 @@ import retrofit2.http.GET;
 
 public class MyService extends Service {
 String emergency="";
-    @Nullable
+    @Override
+    public void onCreate() {
+        // code to execute when the service is first created
+        super.onCreate();
+        Log.i("MyService", "Service Started.");
+go();
+    }
+
     @Override
     public IBinder onBind(Intent intent) {
         return null;
@@ -46,34 +54,9 @@ String emergency="";
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         // Let it continue running until it is stopped.
-        Log.e("myservice", "Ongoing");
 
 
-        final String TAG = "service";
 
-
-        ApiInterfaceearthquake apiServiceearth = ApiClientearthquake.getClient().create(ApiInterfaceearthquake.class);
-//TODO
-        Call calle = apiServiceearth.getall();
-        calle.enqueue(new Callback() {
-            @Override
-            public void onResponse(Call calle, Response response) {
-                Log.e(TAG, "success");
-                Log.e(TAG, response.raw().request().url().toString());
-                String url = response.raw().request().url().toString();
-                Earthquakefinder mytask = new Earthquakefinder();
-                mytask.execute(url);
-
-
-            }
-
-            @Override
-            public void onFailure(Call call, Throwable t) {
-                Log.e(TAG, "failureee");
-            }
-
-
-        });
 
 
 
@@ -83,8 +66,9 @@ String emergency="";
     //        onDestroy();
      //   }
 
-
+        Log.e("myservice", "Ongoing");
         return START_STICKY;
+
     }
 
     @Override
@@ -122,7 +106,32 @@ String emergency="";
 
     }
 
+void go(){
+        ApiInterfaceearthquake apiServiceearth = ApiClientearthquake.getClient().create(ApiInterfaceearthquake.class);
+//TODO
+        Call calle = apiServiceearth.getall();
+        calle.enqueue(new Callback() {
+            @Override
+            public void onResponse(Call calle, Response response) {
+                Log.e("TAG", "success");
+                Log.e(TAG, response.raw().request().url().toString());
+                String url = response.raw().request().url().toString();
+                Earthquakefinder mytask = new Earthquakefinder();
+                mytask.execute(url);
 
+
+            }
+
+            @Override
+            public void onFailure(Call call, Throwable t) {
+                Log.e(TAG, "failureee");
+            }
+
+
+        });
+
+
+    }
     public class Earthquakefinder extends AsyncTask<String, Void, Integer> {
 
 
@@ -230,8 +239,12 @@ String emergency="";
 
                     if (emergency.equals("8"))
                     {
+
+
+
                         Intent i=new Intent(MyService.this,MainalertActivity.class);
-                        startActivity(i);
+
+                     startActivity(i);
 
                     }
 
