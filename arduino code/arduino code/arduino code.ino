@@ -36,7 +36,7 @@ void loop() {
   //if(ch1<=0)goto start;//invalid value
   //String temp =String(ch1);// turn data into string
   
-  updatevalues("100");
+  updatevalues("8");
 
 }
 //----- update the  Thingspeak string 
